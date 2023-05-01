@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Code Generator</title>
+	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #f0f0f0;
+		}
+		h1 {
+			margin-top: 0;
+			font-size: 36px;
+			text-align: center;
+			color: #007bff;
+		}
+		p {
+			font-size: 18px;
+			margin-bottom: 10px;
+			color: #333;
+		}
+		input[type="text"], button {
+			padding: 10px;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			margin-right: 10px;
+		}
+		button {
+			background-color: #007bff;
+			color: #fff;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		button:hover {
+			background-color: #0062cc;
+		}
+		#qr-code {
+			margin-top: 20px;
+			text-align: center;
+		}
+		#qr-code canvas {
+			width: 200px;
+			height: 200px;
+			box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h1>QR Code Generator</h1>
+	<p>Enter the text or URL for the QR code:</p>
+	<input type="text" id="qr-input" placeholder="Enter text or URL">
+	<button id="qr-button">Generate QR code</button>
+	<div id="qr-code"></div>
+
+	<script>
+		var qrInput = document.getElementById('qr-input');
+		var qrButton = document.getElementById('qr-button');
+		var qrCode = new QRCode(document.getElementById('qr-code'), {
+			width: 200,
+			height: 200
+		});
+
+		qrButton.addEventListener('click', function() {
+			var qrText = qrInput.value;
+			qrCode.makeCode(qrText);
+		});
+	</script>
+</body>
+</html>
